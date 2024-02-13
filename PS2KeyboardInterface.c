@@ -47,6 +47,174 @@ char ScancodeToASCII[2][128] = {
      0, 59, 75, 73, 79, 61, 41, 0, 0, 58, 95, 76, 153, 80, 63, 0, 0, 0, 142, 0, 154, 0, 0, 0, 0, 0, 0, 42, 0, 39, 0, 0,
      0, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
+char mapKeyCodeToChar(uint16_t keyCode, uint8_t shiftIsActive)
+{
+
+    char character = '?';
+
+    switch (keyCode)
+    {
+    case 8848:
+        character = ' ';
+        break;
+    case 8416:
+        character = '`';
+        break;
+    case 8544:
+        character = '1';
+        break;
+    case 12768:
+        character = '2';
+        break;
+    case 8800:
+        character = '3';
+        break;
+    case 8784:
+        character = '4';
+        break;
+    case 13024:
+        character = '5';
+        break;
+    case 13152:
+        character = '6';
+        break;
+    case 9168:
+        character = '7';
+        break;
+    case 9184:
+        character = '8';
+        break;
+    case 9312:
+        character = '9';
+        break;
+    case 9296:
+        character = '0';
+        break;
+    case 13536:
+        character = '-';
+        break;
+    case 13648:
+        character = '=';
+        break;
+
+    case 8528:
+        character = 'q';
+        break;
+    case 12752:
+        character = 'w';
+        break;
+    case 12864:
+        character = 'e';
+        break;
+    case 13008:
+        character = 'r';
+        break;
+    case 8896:
+        character = 't';
+        break;
+    case 13136:
+        character = 'y';
+        break;
+    case 13248:
+        character = 'u';
+        break;
+    case 9264:
+        character = 'i';
+        break;
+    case 13376:
+        character = 'o';
+        break;
+    case 13520:
+        character = 'p';
+        break;
+    case 9536:
+        character = '[';
+        break;
+    case 9648:
+        character = ']';
+        break;
+    case 9680:
+        character = '\\';
+        break;
+
+    case 8640:
+        character = 'a';
+        break;
+    case 12720:
+        character = 's';
+        break;
+    case 8752:
+        character = 'd';
+        break;
+    case 12976:
+        character = 'f';
+        break;
+    case 9024:
+        character = 'g';
+        break;
+    case 13104:
+        character = 'h';
+        break;
+    case 9136:
+        character = 'j';
+        break;
+    case 13344:
+        character = 'k';
+        break;
+    case 13488:
+        character = 'l';
+        break;
+    case 9408:
+        character = ';';
+        break;
+    case 9504:
+        character = '\'';
+        break;
+
+    case 8608:
+        character = 'z';
+        break;
+    case 12832:
+        character = 'x';
+        break;
+    case 12816:
+        character = 'c';
+        break;
+    case 8864:
+        character = 'v';
+        break;
+    case 8992:
+        character = 'b';
+        break;
+    case 8976:
+        character = 'n';
+        break;
+    case 13216:
+        character = 'm';
+        break;
+    case 13328:
+        character = ',';
+        break;
+    case 9360:
+        character = '.';
+        break;
+    case 9376:
+        character = '/';
+        break;
+
+    default:
+        character = '?';
+        break;
+    }
+
+    if (character != '?')
+    {
+        UART_transmit(character);
+    }
+
+    return character;
+}
+
 void setup()
 {
     cli(); // Disable interrupts globally
@@ -76,8 +244,6 @@ ISR(PCINT1_vect)
             ;
     }
 
-    UART_print_uint16(val);
-    UART_print("-");
     static uint8_t shiftIsActive = 0;  // state of the SHIFT key
     static uint8_t nextIsReleased = 0; // indicating that the next key was released
 
@@ -88,20 +254,14 @@ ISR(PCINT1_vect)
         shiftIsActive = !nextIsReleased;
         nextIsReleased = 0;
         break; // SHIFT LEFT, SHIFT RIGHT
-    case 999:
+    case 16128:
         nextIsReleased = 1;
-        break;               // key release indicator
-    default:                 // any other key
-        if (!nextIsReleased) // is it a 'key pressed' event?
+        break; // key release indicator
+    default:   // any other key
+
+        if (nextIsReleased == 0)
         {
-
-            // UART_print_uint16(val);
-            // UART_print("-");
-            uint16_t asciiCode = ScancodeToASCII[shiftIsActive][val & 127];
-
-            if (asciiCode != 0) // Check if there is a valid ASCII code
-            {
-            }
+            char asii = mapKeyCodeToChar(val, 0);
         }
         nextIsReleased = 0;
         break;
