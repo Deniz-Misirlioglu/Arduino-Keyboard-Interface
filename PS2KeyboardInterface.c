@@ -54,152 +54,126 @@ char mapKeyCodeToChar(uint16_t keyCode, uint8_t shiftIsActive)
 
     switch (keyCode)
     {
+        // ... (other cases)
     case 8848:
-        character = ' ';
+        character = shiftIsActive ? ' ' : ' ';
         break;
-    case 8416:
-        character = '`';
-        break;
-    case 8544:
-        character = '1';
-        break;
-    case 12768:
-        character = '2';
-        break;
-    case 8800:
-        character = '3';
-        break;
-    case 8784:
-        character = '4';
-        break;
-    case 13024:
-        character = '5';
-        break;
-    case 13152:
-        character = '6';
-        break;
-    case 9168:
-        character = '7';
-        break;
-    case 9184:
-        character = '8';
-        break;
-    case 9312:
-        character = '9';
-        break;
-    case 9296:
-        character = '0';
-        break;
-    case 13536:
-        character = '-';
-        break;
-    case 13648:
-        character = '=';
-        break;
-
-    case 8528:
-        character = 'q';
-        break;
-    case 12752:
-        character = 'w';
-        break;
-    case 12864:
-        character = 'e';
-        break;
-    case 13008:
-        character = 'r';
-        break;
-    case 8896:
-        character = 't';
-        break;
-    case 13136:
-        character = 'y';
-        break;
-    case 13248:
-        character = 'u';
-        break;
-    case 9264:
-        character = 'i';
-        break;
-    case 13376:
-        character = 'o';
-        break;
-    case 13520:
-        character = 'p';
-        break;
-    case 9536:
-        character = '[';
-        break;
-    case 9648:
-        character = ']';
-        break;
-    case 9680:
-        character = '\\';
-        break;
-
     case 8640:
-        character = 'a';
+        character = shiftIsActive ? 'A' : 'a';
         break;
     case 12720:
-        character = 's';
+        character = shiftIsActive ? 'S' : 's';
         break;
     case 8752:
-        character = 'd';
+        character = shiftIsActive ? 'D' : 'd';
         break;
     case 12976:
-        character = 'f';
+        character = shiftIsActive ? 'F' : 'f';
         break;
     case 9024:
-        character = 'g';
+        character = shiftIsActive ? 'G' : 'g';
         break;
     case 13104:
-        character = 'h';
+        character = shiftIsActive ? 'H' : 'h';
         break;
     case 9136:
-        character = 'j';
+        character = shiftIsActive ? 'J' : 'j';
         break;
     case 13344:
-        character = 'k';
+        character = shiftIsActive ? 'K' : 'k';
         break;
     case 13488:
-        character = 'l';
-        break;
-    case 9408:
-        character = ';';
-        break;
-    case 9504:
-        character = '\'';
+        character = shiftIsActive ? 'L' : 'l';
         break;
 
     case 8608:
-        character = 'z';
+        character = shiftIsActive ? 'Z' : 'z';
         break;
     case 12832:
-        character = 'x';
+        character = shiftIsActive ? 'X' : 'x';
         break;
     case 12816:
-        character = 'c';
+        character = shiftIsActive ? 'C' : 'c';
         break;
     case 8864:
-        character = 'v';
+        character = shiftIsActive ? 'V' : 'v';
         break;
     case 8992:
-        character = 'b';
+        character = shiftIsActive ? 'B' : 'b';
         break;
     case 8976:
-        character = 'n';
+        character = shiftIsActive ? 'N' : 'n';
         break;
     case 13216:
-        character = 'm';
+        character = shiftIsActive ? 'M' : 'm';
         break;
-    case 13328:
-        character = ',';
+
+    case 8528:
+        character = shiftIsActive ? 'Q' : 'q';
         break;
-    case 9360:
-        character = '.';
+    case 12752:
+        character = shiftIsActive ? 'W' : 'w';
         break;
-    case 9376:
-        character = '/';
+    case 12864:
+        character = shiftIsActive ? 'E' : 'e';
+        break;
+    case 13008:
+        character = shiftIsActive ? 'R' : 'r';
+        break;
+    case 8896:
+        character = shiftIsActive ? 'T' : 't';
+        break;
+    case 13136:
+        character = shiftIsActive ? 'Y' : 'y';
+        break;
+    case 13248:
+        character = shiftIsActive ? 'U' : 'u';
+        break;
+    case 9264:
+        character = shiftIsActive ? 'I' : 'i';
+        break;
+    case 13376:
+        character = shiftIsActive ? 'O' : 'o';
+        break;
+    case 13520:
+        character = shiftIsActive ? 'P' : 'p';
+        break;
+
+    case 8544:
+        character = shiftIsActive ? '!' : '1';
+        break;
+    case 12768:
+        character = shiftIsActive ? '@' : '2';
+        break;
+    case 8800:
+        character = shiftIsActive ? '#' : '3';
+        break;
+    case 8784:
+        character = shiftIsActive ? '$' : '4';
+        break;
+    case 13024:
+        character = shiftIsActive ? '%' : '5';
+        break;
+    case 13152:
+        character = shiftIsActive ? '^' : '6';
+        break;
+    case 9168:
+        character = shiftIsActive ? '&' : '7';
+        break;
+    case 9184:
+        character = shiftIsActive ? '*' : '8';
+        break;
+    case 9312:
+        character = shiftIsActive ? '(' : '9';
+        break;
+    case 9296:
+        character = shiftIsActive ? ')' : '0';
+        break;
+    case 13536:
+        character = shiftIsActive ? '_' : '-';
+        break;
+    case 13648:
+        character = shiftIsActive ? '+' : '=';
         break;
 
     default:
@@ -250,18 +224,24 @@ ISR(PCINT1_vect)
     switch (val)
     {
     case 18:
-    case 9999:
-        shiftIsActive = !nextIsReleased;
+    case 12576:
+        if (nextIsReleased == 1)
+            shiftIsActive = 0;
+        else
+            shiftIsActive = 1;
+
         nextIsReleased = 0;
         break; // SHIFT LEFT, SHIFT RIGHT
     case 16128:
         nextIsReleased = 1;
         break; // key release indicator
-    default:   // any other key
+
+    default: // any other key
 
         if (nextIsReleased == 0)
         {
-            char asii = mapKeyCodeToChar(val, 0);
+
+            char asii = mapKeyCodeToChar(val, shiftIsActive);
         }
         nextIsReleased = 0;
         break;
