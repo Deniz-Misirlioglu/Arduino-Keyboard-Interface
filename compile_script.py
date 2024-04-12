@@ -30,7 +30,7 @@ else:
 
 level_of_compilation = int(sys.argv[1])
 
-path_win_avr = 'C:/avr-gcc-13.2.0/bin/';
+path_win_avr = 'PUT AVR PATH HERE';
 
 if level_of_compilation >= 1: 
     for fs in files_to_compile:
